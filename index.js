@@ -77,11 +77,9 @@ function doesStrikeCrit(attack, ac) {
 function heal(maxHp, currentHp, healAmount) {
   const health = currentHp + healAmount;
   if (health >= maxHp) {
-    hitPoints = maxHp;
-    return hitPoints;
+    return maxHp;
   } else {
-    hitPoints = currentHp + healAmount;
-    return hitPoints;
+    return currentHp + healAmount;
   }
 }
 
@@ -195,5 +193,16 @@ function canSee(light, vision) {
  * @returns {number} damage dealt by the strike
  */
 function getStrikeDamage(attack, ac, damage) {
-  // TODO
+  const strikeHit = doesStrikeHit(attack, ac);
+  const strikeCrit = doesStrikeHit(attack, ac);
+  if (strikeCrit === true) {
+    dmgDealt = damage * 2;
+    return dmgDealt;
+  } else if (strikeHit === false) {
+    dmgDealt = 0;
+    dmgDealt;
+  } else {
+    dmgDealt = damage;
+    return dmgDealt;
+  }
 }
