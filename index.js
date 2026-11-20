@@ -7,11 +7,9 @@
  */
 function canCastSpell(isSpellPrepared, hasScroll) {
   if (isSpellPrepared === true || hasScroll === true) {
-    castSpell = true;
-    return castSpell;
+    return true;
   } else {
-    castSpell = false;
-    return castSpell;
+    return false;
   }
 }
 
@@ -24,11 +22,9 @@ function canCastSpell(isSpellPrepared, hasScroll) {
  */
 function isHidden(hiding, aware) {
   if (hiding === true || aware === false) {
-    hidden = true;
-    return hidden;
+    return true;
   } else {
-    hidden = false;
-    return hidden;
+    return false;
   }
 }
 
@@ -41,11 +37,9 @@ function isHidden(hiding, aware) {
  */
 function doesStrikeHit(attack, ac) {
   if (attack >= ac) {
-    strike = true;
-    return strike;
+    return true;
   } else {
-    strike = false;
-    return strike;
+    return false;
   }
 }
 
@@ -58,11 +52,9 @@ function doesStrikeHit(attack, ac) {
  */
 function doesStrikeCrit(attack, ac) {
   if (attack >= ac + 10) {
-    crit = true;
-    return crit;
+    return true;
   } else {
-    crit = false;
-    return crit;
+    return false;
   }
 }
 
@@ -101,20 +93,15 @@ function heal(maxHp, currentHp, healAmount) {
  */
 function getProficiencyBonus(level, rank) {
   if (rank === "untrained") {
-    bonus = 0;
-    return bonus;
+    return 0;
   } else if (rank === "trained") {
-    bonus = level + 2;
-    return bonus;
+    return level + 2;
   } else if (rank === "expert") {
-    bonus = level + 4;
-    return bonus;
+    return level + 4;
   } else if (rank === "master") {
-    bonus = level + 6;
-    return bonus;
+    return level + 6;
   } else if (rank === "legendary") {
-    bonus = level + 8;
-    return bonus;
+    return level + 8;
   }
 }
 
@@ -130,14 +117,11 @@ function getProficiencyBonus(level, rank) {
  */
 function getCoverBonus(behindObstacle, takingCover) {
   if (behindObstacle === true && takingCover === false) {
-    bonus = 2;
-    return bonus;
+    return 2;
   } else if (behindObstacle === true && takingCover === true) {
-    bonus = 4;
-    return bonus;
+    return 4;
   } else {
-    bonus = 0;
-    return bonus;
+    return 0;
   }
 }
 
@@ -194,15 +178,12 @@ function canSee(light, vision) {
  */
 function getStrikeDamage(attack, ac, damage) {
   const strikeHit = doesStrikeHit(attack, ac);
-  const strikeCrit = doesStrikeHit(attack, ac);
+  const strikeCrit = doesStrikeCrit(attack, ac);
   if (strikeCrit === true) {
-    dmgDealt = damage * 2;
-    return dmgDealt;
-  } else if (strikeHit === false) {
-    dmgDealt = 0;
-    dmgDealt;
+    return damage * 2;
+  } else if (strikeHit === true && strikeCrit === false) {
+    return damage;
   } else {
-    dmgDealt = damage;
-    return dmgDealt;
+    return 0;
   }
 }
