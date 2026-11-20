@@ -57,7 +57,13 @@ function doesStrikeHit(attack, ac) {
  * @returns {boolean} whether the strike is a critical hit
  */
 function doesStrikeCrit(attack, ac) {
-  // TODO
+  if (attack >= ac + 10) {
+    crit = true;
+    return crit;
+  } else {
+    crit = false;
+    return crit;
+  }
 }
 
 /**
